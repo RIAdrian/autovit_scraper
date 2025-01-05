@@ -1,61 +1,89 @@
-# autovit_scraper
-This project is a Python-based scraper designed to extract car listing details from Autovit.ro. It collects structured data about car ads, including metadata, and saves it for further analysis or use.
+# Autovit Scraper
 
-Features:
-Scrapes Car Listings:
+This Python project scrapes car listing details from [Autovit.ro](https://www.autovit.ro) and saves them in a structured format. The scraper is designed to extract important metadata from car ads, including images, and store them locally for further analysis or use.
 
-Extracts important details such as:
-Car title
-Price
-Year of manufacture
-Mileage
-Location
-Image URLs
-Downloads car images locally and ensures unique naming.
-Customizable:
+## Features
 
-The scraper allows configurations for:
-Filtering ads (e.g., price limits).
-Maximum number of ads to scrape (MAX_LISTINGS).
-Data Storage:
+### 🔍 **Scrapes Car Listings**
+- Extracts key details:
+  - **Title**: Name of the car listing.
+  - **Price**: Extracted directly from the ad.
+  - **Year**: Year of manufacture.
+  - **Mileage**: Total kilometers driven.
+  - **Location**: Where the car is listed.
+  - **Image URL**: Downloads the car's image locally.
 
-Saves the extracted data in a structured JSON file (autovit_listings.json).
-Image Handling:
+### 📂 **Data Storage**
+- Stores the scraped data in a structured JSON file (`autovit_listings.json`).
+- Saves images locally in a directory (`autovit_images`).
 
-Downloads images locally into a designated directory (autovit_images).
-HTML Structure:
-The scraper relies on the structure of Autovit.ro's HTML. Key elements:
+### ⚙️ **Configurable**
+- Customize:
+  - Filters (e.g., price limit).
+  - Maximum number of listings to scrape (`MAX_LISTINGS`).
 
-Each car listing is wrapped in an <article> tag with the class ooa-1yux8sr.
-Key attributes extracted:
-Title: Found in an <h2> tag within the listing.
-Price: Extracted from an <h3> tag with the class e6r213i1 ooa-1n2paoq er34gjf0.
-Details: Found in a <p> tag with the class ewg8vos8, containing mileage, year, etc.
-Location and Date: Extracted from a <p> tag with the class ooa-gmxnzj.
-Image URL: Located in an <img> tag within the listing.
-File Overview:
-scraper.py: The main script for scraping car listings and saving the data to a JSON file.
-How to Use:
-Clone the repository.
-Install the required Python libraries:
-bash
-Copiază codul
-pip install requests beautifulsoup4
-Run the scraper script to fetch car listings:
-bash
-Copiază codul
-python scraper.py
-This will:
-Generate a JSON file (autovit_listings.json) containing the extracted data.
-Save car images in the autovit_images directory.
-Requirements:
-Python 3.7 or higher
-Required libraries:
-requests
-beautifulsoup4
-Usage Notes:
-Ensure the target website (Autovit.ro) is accessible from your network.
-Update the HEADERS field if needed to avoid being blocked by the website.
-The scraper depends on the current HTML structure of Autovit.ro. If the structure changes, the selectors in the code will need to be updated.
-Contribution:
+### 🛠 **HTML Structure for Extraction**
+The scraper works by targeting specific HTML elements on the [Autovit.ro](https://www.autovit.ro) website. Key elements include:
+- **Listing Container**: Each car ad is wrapped in an `<article>` tag with the class `ooa-1yux8sr`.
+- **Title**: Found within an `<h2>` tag.
+- **Price**: Located inside an `<h3>` tag with the class `e6r213i1 ooa-1n2paoq er34gjf0`.
+- **Details**: Mileage and year are stored in a `<p>` tag with the class `ewg8vos8`.
+- **Location**: Found in a `<p>` tag with the class `ooa-gmxnzj`.
+- **Image**: URL of the car's image is in an `<img>` tag.
+
+## Getting Started
+
+### 🧰 **Requirements**
+- Python 3.7 or higher
+- Required libraries:
+  - `requests`
+  - `beautifulsoup4`
+
+### 📥 **Installation**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/autovit_scraper.git
+   cd autovit_scraper
+   ```
+2. Install the required libraries:
+   ```bash
+   pip install requests beautifulsoup4
+   ```
+
+### 🚀 **Usage**
+1. Run the scraper script:
+   ```bash
+   python scraper.py
+   ```
+   - This will fetch car listings, save images to the `autovit_images` directory, and generate the JSON file `autovit_listings.json`.
+
+2. Access the results:
+   - View the structured JSON file containing all extracted details.
+   - Use the images saved in the `autovit_images` directory.
+
+### ⚠️ **Notes**
+- Ensure the website [Autovit.ro](https://www.autovit.ro) is accessible from your network.
+- If the website's HTML structure changes, update the selectors in the script to match the new structure.
+- The scraper is intended for educational purposes and must comply with the website's terms of service.
+
+## Example JSON Output
+Here’s an example of the generated JSON file:
+
+```json
+[
+    {
+        "Link": "https://www.autovit.ro/autoturisme/anunt/peugeot-5008-ID7HuVH7.html",
+        "Summary": "Peugeot 5008",
+        "Price": "6,999 EUR",
+        "Year": "2015",
+        "Mileage": "215,000 km",
+        "Location": "Timișoara (Timiș)",
+        "Image": "autovit_images/image_1.jpg"
+    }
+]
+```
+
+## Contribution
 Feel free to fork this repository, submit issues, or create pull requests to improve functionality or add new features.
+
+---
