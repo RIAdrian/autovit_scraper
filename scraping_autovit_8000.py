@@ -51,12 +51,12 @@ def get_listings(url):
 
             # Extract mileage and year
             year = "N/A"
-            km = "N/A"
+            c_p = "N/A"
             if details_text:
                 parts = details_text.split(" • ")
                 if len(parts) >= 3:
                     year = parts[-2].strip()
-                    km = parts[-3].strip()
+                    c_p = parts[-3].strip()
 
             # Find location and publication date
             location_tag = ad.find("p", class_="ooa-gmxnzj")
@@ -81,7 +81,7 @@ def get_listings(url):
                 "Summary": title,
                 "Price": price,
                 "Year": year,
-                "Mileage": km,
+                "Cilindric_power": c_p,
                 "Location": location,
                 "Image": image_path
             })
